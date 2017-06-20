@@ -16,10 +16,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-1"></div>
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<div id="postlist">
-					<div class="panel">
-						<div class="panel-heading">
+					<div class="panel" id="Posts">
+						<!-- <div class="panel-heading">
 							<div class="text-center">
 								<div class="row">
 									<div class="col-md-9">
@@ -46,53 +46,113 @@
 
 						<div class="panel-footer">
 							<span class="label label-default">Welcome</span> <span class="label label-default">Updates</span> <span class="label label-default">July</span>
-						</div>
+						</div> -->
 					</div>
-
-					<div class="panel">
-						<div class="panel-heading">
-							<div class="text-center">
-								<div class="row">
-									<div class="col-md-9">
-										<h3 class="pull-left">Post With image</h3>
-									</div>
-									<div class="col-md-3">
-										<h4 class="pull-right">
-											<small><em>2014-07-30 18:30:00</em></small>
-										</h4>
-									</div>
-									<div class="col-md-2">
-										<h5 class="pull-left">Author :</h5>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="panel">
+					<div class="panel-body">
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#LoginModal">Login</button></a>
+					</div>
+					<!-- line modal -->
+					<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">								
+								<div class="modal-body">
+									<!-- content goes here -->
+									<form>
+										<div class="form-login">
+											<h4 style="text-align: center;">Welcome back.</h4>
+											<input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+										</br>
+										<input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+									</br>
+									<div class="wrapper">
+										<span class="group-btn" style="margin: 0 100px;">     
+											<a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+										</span>
 									</div>
 								</div>
-							</div>
-						</div>
-
-						<div class="panel-body">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation... <a href="#">Read more</a>
-						</div>
-
-						<div class="panel-footer">
-							<span class="label label-default">Image</span> <span class="label label-default">Updates</span> <span class="label label-default">July</span>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+</div>	
+<table id="PostsTable">
+	<tbody>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	</tbody>
+</table>
+<script	src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>	
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js" integrity="sha256-+J5cSgDOPu6OT8mt+r5f7/cmvICoEmNdK2ZGz8ql8wc=" crossorigin="anonymous"></script>
 
-	<script src="moment.js"></script>
-	<script>
-		var date = moment();
-		console.log(date.format());		
-	</script>
+<script src="script.js"></script>
+<script>
+	$.ajax({
+		url:'https://richegg.top/posts',
+		type:'get',
+		dataType: 'json',
+		success: function (data) {
+			for (let posts of data) {
+				var title = posts.title;
+				var content = posts.content;
+				var created_at = posts.created_at;
+				var time = moment(created_at);
+				var time_print = time.format('LLLL');
+				var name = posts.author.name;
+				var tags = "";
+				for (var i = 0; i < posts.tags.length; i++) {
+					tags += "<span class='label label-default'>" + posts.tags[i] + "</span> ";
+					console.log(posts.tags[i]);
+				}
+
+				$('#Posts').append(`
+				<div class="panel-heading">
+					<div class="text-center">
+						<div class="row">
+							<div class="col-md-9">
+							<h3 class="pull-left">${title}</h3>
+							</div>
+							<div class="col-md-3">
+								<h4 class="pull-right">
+									<small>${time_print}</em></small>
+								</h4>
+							</div>
+							<div class="col-md-9">
+								<h5 class="pull-left">${name}</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel-body">
+					${content}
+				</div>
+
+				<div class="panel-footer">
+					${tags}
+				</div>
+				`);
+			}
+		},
+		error: function (jqXHR) {
+			console.log(jqXHR);
+		}
+	});
+</script>
+
+<script>
+	var date = moment();
+	console.log(date.format('LLLL'));	
+</script>
 
 </body>
 </html>
