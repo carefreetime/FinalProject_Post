@@ -11,148 +11,133 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<style type="text/css">
+		#button_edit, #button_delete {
+			background-color: white; 
+		}
+		.fa-trash-o {
+			color: red;
+		}
+		.fa-pencil {
+			color: green;
+		}
+	</style>
+
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-8">
-				<div id="postlist">
-					<div class="panel" id="Posts">
-						<!-- <div class="panel-heading">
-							<div class="text-center">
-								<div class="row">
-									<div class="col-md-9">
-										<h3 class="pull-left">Welcome</h3>
-									</div>
-									<div class="col-md-3">
-										<h4 class="pull-right">
-											<small><em>2014-07-30<br>18:30:00</em></small>
-										</h4>
-									</div>
-									<div class="col-md-9">
-										<h5 class="pull-left">Author :</h5>
-									</div>
+	<menu>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-1">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="tab-home" data-toggle="tab" href="#home" role="tab">首頁</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="tab-user" data-toggle="tab" href="#user" role="tab">使用者</a>
+						</li>
+					</ul>					
+				</div>
+				<div class="col-md-1">
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#LoginModal">Login</button></a>
+				</div>
+				<div class="col-md-1">
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#NewPostModal">新增文章</button></a>
+				</div>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active in" id="home" role="tabpanel">
+						<div class="col-md-8 col-md-offset-1">
+							<div id="postlist">
+								<div class="panel" id="Posts"></div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="user" role="tabpanel">
+						<div class="col-md-8 col-md-offset-1">
+							<div id="userlist">
+								<div class="panel" id="User">									
 								</div>
 							</div>
 						</div>
-
-						<div class="panel-body">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in... <a href="#">Read more</a>
-						</div>
-
-						<div class="panel-footer">
-							<span class="label label-default">Welcome</span> <span class="label label-default">Updates</span> <span class="label label-default">July</span>
-						</div> -->
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="panel">
-					<div class="panel-body">
-						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#LoginModal">Login</button></a>
-					</div>
-					<!-- line modal -->
-					<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-sm">
-							<div class="modal-content">								
-								<div class="modal-body">
-									<!-- content goes here -->
-									<form>
-										<div class="form-login">
-											<h4 style="text-align: center;">Welcome back.</h4>
-											<input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
-										</br>
+
+				<!-- line modal -->
+				<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">								
+							<div class="modal-body">
+								<!-- content goes here -->
+								<form>
+									<div class="form-login">
+										<h4 style="text-align: center;">Welcome back.</h4>
+										<input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
+										<br/>
 										<input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
-									</br>
-									<div class="wrapper">
-										<span class="group-btn" style="margin: 0 100px;">     
-											<a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
-										</span>
+										<br/>
+										<div class="wrapper">
+											<span class="group-btn" style="margin: 0 100px;">     
+												<a href="#" class="btn btn-primary btn-md" id="login">login <i class="fa fa-sign-in"></i></a>
+											</span>
+										</div>
 									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>	
-<table id="PostsTable">
-	<tbody>
-
-	</tbody>
-</table>
-<script	src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>	
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js" integrity="sha256-+J5cSgDOPu6OT8mt+r5f7/cmvICoEmNdK2ZGz8ql8wc=" crossorigin="anonymous"></script>
-
-<script src="script.js"></script>
-<script>
-	$.ajax({
-		url:'https://richegg.top/posts',
-		type:'get',
-		dataType: 'json',
-		success: function (data) {
-			for (let posts of data) {
-				var title = posts.title;
-				var content = posts.content;
-				var created_at = posts.created_at;
-				var time = moment(created_at);
-				var time_print = time.format('LLLL');
-				var name = posts.author.name;
-				var tags = "";
-				for (var i = 0; i < posts.tags.length; i++) {
-					tags += "<span class='label label-default'>" + posts.tags[i] + "</span> ";
-					console.log(posts.tags[i]);
-				}
-
-				$('#Posts').append(`
-				<div class="panel-heading">
-					<div class="text-center">
-						<div class="row">
-							<div class="col-md-9">
-							<h3 class="pull-left">${title}</h3>
-							</div>
-							<div class="col-md-3">
-								<h4 class="pull-right">
-									<small>${time_print}</em></small>
-								</h4>
-							</div>
-							<div class="col-md-9">
-								<h5 class="pull-left">${name}</h5>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="panel-body">
-					${content}
+				<!-- line modal -->
+				<div class="modal fade" id="NewPostModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">								
+							<div class="modal-body">
+								<!-- content goes here -->
+								<form>
+									<div class="form-newpost">
+										<h4 style="text-align: center;">新增文章</h4>
+										<span>Title</span>
+										<input type="text" id="title" class="form-control input-sm chat-input" placeholder="Title" />
+										<br/>
+										<span>Content</span>
+										<textarea class="form-control" placeholder="Content" id="content"></textarea> 
+										<!-- <input type="text" id="content" class="form-control input-sm chat-input" placeholder="Title" /> -->
+										<br/>
+										<span>Tags</span>
+										<input type="text" id="tags" class="form-control input-sm chat-input" placeholder="Tags" />
+										<br/>
+										<div class="wrapper">
+											<span class="group-btn" >     
+												<a href="#" class="btn btn-primary btn-md" id="newpost"><i class="fa fa-paper-plane"></i> 新增</a>
+											</span>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<div class="panel-footer">
-					${tags}
-				</div>
-				`);
-			}
-		},
-		error: function (jqXHR) {
-			console.log(jqXHR);
-		}
-	});
-</script>
+			</menu>	
 
-<script>
-	var date = moment();
-	console.log(date.format('LLLL'));	
-</script>
+			<script	src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>	
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js" integrity="sha256-+J5cSgDOPu6OT8mt+r5f7/cmvICoEmNdK2ZGz8ql8wc=" crossorigin="anonymous"></script>
 
+			<script src="script.js"></script>
+			<script>
+				$(document).ready(function () {
+					App.init();
+				});	
+		// $('#menu a').click(function (e) {
+		// 	e.preventDefault()
+		// 	$(this).tab('show')
+		// })
+	</script>
 </body>
 </html>
