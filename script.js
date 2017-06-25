@@ -109,6 +109,8 @@ var App = (function () {
     }
 
     function _postNew() {
+    	var x = $("#tags").val('items');
+    	console.log(x);
     	$.ajax({
     		url: 'https://richegg.top/posts',
     		type: 'post',
@@ -140,7 +142,23 @@ var App = (function () {
     }
 
     function _postDelete() {
-    	console.log('delete');
+    	var pid = $(this).parents('.panel-heading').attr('data-id');
+    	$.ajax({
+            url: `https://richegg.top/posts/` + pid,
+            type: 'delete',
+            dataType: 'json',
+    		contentType: 'application/json',
+    		xhrFields: {
+    			withCredentials: true
+    		},
+            success: function (data) {
+                console.log("刪除成功");
+                location.reload();
+            },
+            error: function (jqXHR) {
+                console.log(jqXHR);
+            }
+        });
     }
 
     function _handleDelTask() {
