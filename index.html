@@ -107,15 +107,46 @@
 										<input type="text" id="title" class="form-control input-sm chat-input" placeholder="Title" />
 										<br/>
 										<span>Content</span>
-										<textarea class="form-control" placeholder="Content" id="content"></textarea> 
-										<!-- <input type="text" id="content" class="form-control input-sm chat-input" placeholder="Title" /> -->
+										<textarea class="form-control" placeholder="Content" id="content"></textarea>
 										<br/>
 										<span>Tags</span>
-										<input type="text" id="tags" class="form-control input-sm chat-input" data-role="tagsinput" />
+										<input type="text" id="tags" class="form-control input-sm chat-input" data-role="tagsinput" value="1,2,3" />
+										<br/>
 										<br/>
 										<div class="wrapper">
 											<span class="group-btn" >     
 												<a href="#" class="btn btn-primary btn-md" id="newpost"><i class="fa fa-paper-plane"></i> 新增</a>
+											</span>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- line modal -->
+				<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">								
+							<div class="modal-body">
+								<!-- content goes here -->
+								<form>
+									<div class="form-newpost">
+										<h4 style="text-align: center;">編輯文章</h4>
+										<span>Title</span>
+										<input type="text" id="edittitle" class="form-control input-sm chat-input"/>
+										<br/>
+										<span>Content</span>
+										<textarea class="form-control" id="editcontent"></textarea>
+										<br/>
+										<span>Tags</span>
+										<input type="text" id="edittags" class="form-control input-sm chat-input" data-role="tagsinput" value="1,2,3" />
+										<br/>
+										<br/>
+										<div class="wrapper">
+											<span class="group-btn" >     
+												<a href="#" class="btn btn-primary btn-md" id="updatepost"><i class="fa fa-pencil-square-o"></i> 更新</a>
 											</span>
 										</div>
 									</div>
